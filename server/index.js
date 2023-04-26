@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose');
 const { config } = require("dotenv");
+const Product = require("./schemas/Product");
 config();
 
 //middleware
@@ -20,3 +21,12 @@ connection.once('open', () => {
 app.listen(5005, () => {
   console.log("Server has started on port 5005!");
 });
+
+app.get('/products', async (req, res) => {
+    try {
+      const products = await Product.find();
+      return res.status(200).json(products);
+    } catch (err) {
+      res.status(500).json({ message: 'Error fetching products', error: err });
+    }
+  });
