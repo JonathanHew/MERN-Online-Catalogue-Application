@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
-  id: Number,
+  id: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
   title: String,
   description: String,
   price: Number,
@@ -12,7 +16,7 @@ const productSchema = new Schema({
   brand: String,
   category: String,
   thumbnail: String,
-  images: Object
+  images: Object,
 });
 
 const Product = mongoose.model("Product", productSchema);
