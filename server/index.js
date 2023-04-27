@@ -82,3 +82,23 @@ app.post("/products/:id", async (req, res) => {
     res.status(500).json({ message: "Error creating a new product", error });
   }
 });
+
+app.put('/products/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const updatedData = req.body;
+
+    // Find the product with the provided productId and update it
+    const updatedProduct = await Product.findOneAndUpdate({ id: productId }, updatedData, { new: true, runValidators: true });
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Send the updated product as a response
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({ message: 'Error updating product', error });
+  }
+});
