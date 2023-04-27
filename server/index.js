@@ -102,3 +102,22 @@ app.put('/products/:id', async (req, res) => {
     res.status(500).json({ message: 'Error updating product', error });
   }
 });
+
+app.delete('/products/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    // Find the product with the provided productId and delete it
+    const deletedProduct = await Product.findOneAndDelete({ id: productId });
+
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Send a success response with the deleted product
+    res.status(200).json({ message: 'Product deleted', deletedProduct });
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    res.status(500).json({ message: 'Error deleting product', error });
+  }
+});
