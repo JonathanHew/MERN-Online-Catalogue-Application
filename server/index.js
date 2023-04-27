@@ -36,6 +36,25 @@ app.get("/products", async (req, res) => {
   }
 });
 
+app.get('/products/:id', async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    // Find the product with the provided id
+    const product = await Product.findOne({ id: productId });
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Send the product as a response
+    res.status(200).json(product);
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    res.status(500).json({ message: 'Error fetching product', error });
+  }
+});
+
 app.post("/products/:id", async (req, res) => {
   try {
     const productId = parseInt(req.params.id);
