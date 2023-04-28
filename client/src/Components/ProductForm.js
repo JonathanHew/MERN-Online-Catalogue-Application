@@ -108,6 +108,33 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
             style={{ width: "300px" }}
           />
         </div>
+        <div class="mt-2">
+          <label for="productDescription" class="form-label">
+            Description
+          </label>
+          <textarea
+            className="form-control m-auto"
+            id="productDescription"
+            name="productDescription"
+            value={values.description}
+            onChange={(e) => onChange(e)}
+            style={{ width: "300px" }}
+          />
+        </div>
+        <div class="mt-2">
+          <label for="productPrice" class="form-label">
+            Price €
+          </label>
+          <input
+            type="number"
+            className="form-control m-auto"
+            id="productPrice"
+            name="productPrice"
+            value={values.price}
+            onChange={(e) => onChange(e)}
+            style={{ width: "100px" }}
+          />
+        </div>
       </div>
     </Fragment>
   );
