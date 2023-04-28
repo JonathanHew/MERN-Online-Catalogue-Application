@@ -94,6 +94,20 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
             style={{ width: "300px" }}
           />
         </div>
+        <div class="mt-2">
+          <label for="productCategory" class="form-label">
+            Category
+          </label>
+          <input
+            type="text"
+            className="form-control m-auto"
+            id="productCategory"
+            name="productCategory"
+            value={values.category}
+            onChange={(e) => onChange(e)}
+            style={{ width: "300px" }}
+          />
+        </div>
       </div>
     </Fragment>
   );
