@@ -40,9 +40,6 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
         />
       </div>
       <div className="text-center mt-2">
-        <label for="productId" className="form-label">
-          Product ID
-        </label>
         <div className="input-group mb-1 m-auto" style={{ width: "200px" }}>
           <button
             class="btn btn-outline-secondary"
@@ -68,6 +65,34 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           >
             Next
           </button>
+        </div>
+        <div class="mt-2">
+          <label for="productName" class="form-label">
+            Product
+          </label>
+          <input
+            type="text"
+            className="form-control m-auto"
+            id="productTitle"
+            name="productTitle"
+            value={values.title}
+            onChange={(e) => onChange(e)}
+            style={{ width: "300px" }}
+          />
+        </div>
+        <div class="mt-2">
+          <label for="productBrand" class="form-label">
+            Brand
+          </label>
+          <input
+            type="text"
+            className="form-control m-auto"
+            id="productBrand"
+            name="productBrand"
+            value={values.brand}
+            onChange={(e) => onChange(e)}
+            style={{ width: "300px" }}
+          />
         </div>
       </div>
     </Fragment>
