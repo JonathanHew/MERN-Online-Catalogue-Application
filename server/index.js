@@ -7,8 +7,13 @@ const { config } = require("dotenv");
 const Product = require("./schemas/Product");
 config();
 
+const corsOptions = {
+  origin: "http://localhost:8080",
+  credentials: true,
+};
+
 //middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI, {
