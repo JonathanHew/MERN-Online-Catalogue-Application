@@ -51,8 +51,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           <input
             type="number"
             className="form-control m-auto"
-            id="productId"
-            name="productId"
+            id="id"
+            name="id"
             value={values.id}
             onChange={(e) => onChange(e)}
           />
@@ -73,8 +73,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           <input
             type="text"
             className="form-control m-auto"
-            id="productTitle"
-            name="productTitle"
+            id="title"
+            name="title"
             value={values.title}
             onChange={(e) => onChange(e)}
             style={{ width: "300px" }}
@@ -87,8 +87,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           <input
             type="text"
             className="form-control m-auto"
-            id="productBrand"
-            name="productBrand"
+            id="brand"
+            name="brand"
             value={values.brand}
             onChange={(e) => onChange(e)}
             style={{ width: "300px" }}
@@ -101,8 +101,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           <input
             type="text"
             className="form-control m-auto"
-            id="productCategory"
-            name="productCategory"
+            id="category"
+            name="category"
             value={values.category}
             onChange={(e) => onChange(e)}
             style={{ width: "300px" }}
@@ -114,8 +114,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           </label>
           <textarea
             className="form-control m-auto"
-            id="productDescription"
-            name="productDescription"
+            id="description"
+            name="description"
             value={values.description}
             onChange={(e) => onChange(e)}
             style={{ width: "300px" }}
@@ -128,8 +128,8 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
           <input
             type="number"
             className="form-control m-auto"
-            id="productPrice"
-            name="productPrice"
+            id="price"
+            name="price"
             value={values.price}
             onChange={(e) => onChange(e)}
             style={{ width: "100px" }}
