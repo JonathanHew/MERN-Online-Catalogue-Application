@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
 import ProductForm from "../Components/ProductForm";
+import AddProduct from "../Components/AddProduct";
 axios.defaults.withCredentials = true;
 
 const MainPage = () => {
@@ -21,7 +22,8 @@ const MainPage = () => {
     thumbnail: "",
   });
 
-  useEffect(() => {
+
+   useEffect(() => {
     (async () => {
       await axios.get("http://localhost:5005/products/").then((res) => {
         setProducts(res.data);
@@ -56,6 +58,21 @@ const MainPage = () => {
               setValues={setValues}
               setIndex={setIndex}
             />
+
+            <div className="row text-center mt-5 mb-3">
+              <div className="col ">
+                <button className="btn btn-primary">Search</button>
+              </div>
+              <div className="col ">
+                <AddProduct products={products }setProducts={setProducts}/>
+              </div>
+              <div className="col ">
+                <button className="btn btn-primary">Edit</button>
+              </div>
+              <div className="col ">
+                <button className="btn btn-primary">Delete</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

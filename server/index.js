@@ -60,21 +60,17 @@ app.get('/products/:id', async (req, res) => {
   }
 });
 
-app.post("/products/:id", async (req, res) => {
+app.post("/products", async (req, res) => {
   try {
-    const productId = parseInt(req.params.id);
     const productData = req.body;
 
     // Check if the product with the provided ID already exists
-    const existingProduct = await Product.findOne({id: productId});
+    const existingProduct = await Product.findOne({id: req.body.id});
     if (existingProduct) {
       return res
         .status(400)
         .json({ message: "Product with the provided ID already exists" });
     }
-
-    // Set the _id field of the productData to the provided productId
-    productData.id = productId;
 
     // Create a new product using the Product model and save it to the database
     const newProduct = new Product(productData);
