@@ -86,8 +86,17 @@ app.post("/products", async (req, res) => {
 
 app.put("/products/:id", async (req, res) => {
   try {
-    const productId = req.params.id;
+    const productId = parseInt(req.params.id);
     const updatedData = req.body;
+
+    const existingProduct = await Product.findOne({ id: updatedData.id });
+
+    if(updatedData.id !== productId) {
+      // If the new product ID already belongs to another product, return an error response
+      if (existingProduct && existingProduct.id !== productId) {
+        return res.status(400).json({ message: "The new product ID already exists" });
+      }
+    }
 
     // Find the product with the provided productId and update it
     const updatedProduct = await Product.findOneAndUpdate(

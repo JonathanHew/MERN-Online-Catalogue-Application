@@ -24,7 +24,6 @@ const MainPage = () => {
     thumbnail: "",
   });
 
-
    useEffect(() => {
     (async () => {
       await axios.get("http://localhost:5005/products/").then((res) => {
@@ -69,7 +68,7 @@ const MainPage = () => {
                 <AddProduct products={products }setProducts={setProducts}/>
               </div>
               <div className="col ">
-                <EditProduct />
+                <EditProduct index={index} products={products} setProducts={setProducts} setNewValues={setValues}/>
               </div>
               <div className="col ">
                 <DeleteProduct products={products} index={index} setSuccess={setSuccess} setProducts={setProducts} setIndex={setIndex}/>
