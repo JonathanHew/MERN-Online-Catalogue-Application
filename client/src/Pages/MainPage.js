@@ -71,7 +71,7 @@ const MainPage = () => {
                 <button className="btn btn-primary">Edit</button>
               </div>
               <div className="col ">
-                <DeleteProduct />
+                <DeleteProduct products={products} index={index} setSuccess={setSuccess} setProducts={setProducts} setIndex={setIndex}/>
               </div>
             </div>
           </div>
