@@ -4,6 +4,7 @@ import "../App.css";
 import axios from "axios";
 import ProductForm from "../Components/ProductForm";
 import AddProduct from "../Components/AddProduct";
+import DeleteProduct from "../Components/DeleteProduct";
 axios.defaults.withCredentials = true;
 
 const MainPage = () => {
@@ -70,7 +71,7 @@ const MainPage = () => {
                 <button className="btn btn-primary">Edit</button>
               </div>
               <div className="col ">
-                <button className="btn btn-primary">Delete</button>
+                <DeleteProduct />
               </div>
             </div>
           </div>
