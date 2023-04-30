@@ -10,25 +10,42 @@ const ProductForm = ({ products, index, values, setValues, setIndex }) => {
     e.preventDefault();
     //setError("");
     //setSuccess("");
-    const newIndex = index + 1;
+    let newIndex = index + 1;
     if (newIndex == products.length) {
-      setIndex(0);
+      newIndex = 0
+      setIndex(newIndex);
     } else {
       setIndex(newIndex);
     }
+    resetValues(newIndex);
   };
 
   const prevProduct = (e) => {
     e.preventDefault();
     //setError("");
     //setSuccess("");
-    const newIndex = index - 1;
+    let newIndex = index - 1;
     if (newIndex < 0) {
-      setIndex(products.length - 1);
+      newIndex = products.length -1
+      setIndex(newIndex);
     } else {
       setIndex(newIndex);
     }
+
+    resetValues(newIndex);
   };
+
+  const resetValues = (newIndex) => {
+    setValues({
+      id: products[newIndex].id,
+      title: products[newIndex].title,
+      description: products[newIndex].description,
+      price: products[newIndex].price,
+      brand: products[newIndex].brand,
+      category: products[newIndex].category,
+      thumbnail: products[newIndex].thumbnail,
+    })
+  }
 
   return (
     <Fragment>

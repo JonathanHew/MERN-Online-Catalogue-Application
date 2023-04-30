@@ -6,6 +6,7 @@ import ProductForm from "../Components/ProductForm";
 import AddProduct from "../Components/AddProduct";
 import DeleteProduct from "../Components/DeleteProduct";
 import EditProduct from "../Components/EditProduct";
+import SearchProduct from "../Components/SearchProduct";
 axios.defaults.withCredentials = true;
 
 const MainPage = () => {
@@ -24,7 +25,7 @@ const MainPage = () => {
     thumbnail: "",
   });
 
-   useEffect(() => {
+  useEffect(() => {
     (async () => {
       await axios.get("http://localhost:5005/products/").then((res) => {
         setProducts(res.data);
@@ -40,7 +41,7 @@ const MainPage = () => {
       });
       setLoading(false);
     })();
-  }, [index]);
+  }, []);
 
   return loading ? (
     <Fragment>
@@ -52,6 +53,7 @@ const MainPage = () => {
         <div className="card mt-5">
           <div className="card-body">
             <h1 className="text-center">Product Catalogue Application</h1>
+            <SearchProduct />
             <ProductForm
               products={products}
               index={index}
@@ -59,19 +61,26 @@ const MainPage = () => {
               setValues={setValues}
               setIndex={setIndex}
             />
-
             <div className="row text-center mt-5 mb-3">
               <div className="col ">
-                <button className="btn btn-primary">Search</button>
+                <AddProduct products={products} setProducts={setProducts} />
               </div>
               <div className="col ">
-                <AddProduct products={products }setProducts={setProducts}/>
+                <EditProduct
+                  index={index}
+                  products={products}
+                  setProducts={setProducts}
+                  setNewValues={setValues}
+                />
               </div>
               <div className="col ">
-                <EditProduct index={index} products={products} setProducts={setProducts} setNewValues={setValues}/>
-              </div>
-              <div className="col ">
-                <DeleteProduct products={products} index={index} setSuccess={setSuccess} setProducts={setProducts} setIndex={setIndex}/>
+                <DeleteProduct
+                  products={products}
+                  index={index}
+                  setSuccess={setSuccess}
+                  setProducts={setProducts}
+                  setIndex={setIndex}
+                />
               </div>
             </div>
           </div>

@@ -135,3 +135,15 @@ app.delete("/products/:id", async (req, res) => {
     res.status(500).json({ message: "Error deleting product", error });
   }
 });
+
+app.get("/categories", async (req, res) => {
+  try {
+    // Query the database to retrieve all unique categories
+    const categories = await Product.distinct("category");
+    // Send the results as a JSON response
+    res.json(categories);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
