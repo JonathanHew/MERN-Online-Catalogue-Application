@@ -30,6 +30,7 @@ app.listen(5005, () => {
   console.log("Server has started on port 5005!");
 });
 
+/*
 app.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
@@ -38,6 +39,33 @@ app.get("/products", async (req, res) => {
     return res
       .status(500)
       .json({ message: "Error fetching products", error: err });
+  }
+});
+*/
+
+// GET /products?search=<search>&category=<category>
+app.get("/products", async (req, res) => {
+  try {
+    const search = req.query.search || "";
+    const category = req.query.category || "";
+
+    const query = {};
+
+    if (search) {
+      query.title = { $regex: new RegExp(search, "i") };
+    }
+
+    if (category) {
+      query.category = category;
+    }
+
+    const products = await Product.find(query);
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while fetching products." });
   }
 });
 
@@ -91,10 +119,12 @@ app.put("/products/:id", async (req, res) => {
 
     const existingProduct = await Product.findOne({ id: updatedData.id });
 
-    if(updatedData.id !== productId) {
+    if (updatedData.id !== productId) {
       // If the new product ID already belongs to another product, return an error response
       if (existingProduct && existingProduct.id !== productId) {
-        return res.status(400).json({ message: "The new product ID already exists" });
+        return res
+          .status(400)
+          .json({ message: "The new product ID already exists" });
       }
     }
 

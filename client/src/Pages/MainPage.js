@@ -53,7 +53,8 @@ const MainPage = () => {
         <div className="card mt-5">
           <div className="card-body">
             <h1 className="text-center">Product Catalogue Application</h1>
-            <SearchProduct />
+            
+            <SearchProduct setProducts={setProducts} setIndex={setIndex} setValues={setValues}/>
             <ProductForm
               products={products}
               index={index}
