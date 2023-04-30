@@ -39,6 +39,7 @@ const AddProduct = ({products, setProducts}) => {
     setSuccess("");
     try {
       if (!values.id || !values.title || !values.description || !values.price || !values.brand || !values.category || !values.thumbnail) {
+        setError("Please fill out all fields!");
         throw new Error("Please fill out all fields!");
       }
 
@@ -50,11 +51,10 @@ const AddProduct = ({products, setProducts}) => {
           setSuccess(`New Product Added with ID: ${res.data.id}`);
         });
     } catch (err) {
-      console.error(err.message);
-      setError(err.message);
+      console.error(err);
+      setError(err.response.data.message);
     }
   };
-
 
   return (
     <Fragment>

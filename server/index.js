@@ -41,7 +41,7 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.get('/products/:id', async (req, res) => {
+app.get("/products/:id", async (req, res) => {
   try {
     const productId = req.params.id;
 
@@ -49,14 +49,14 @@ app.get('/products/:id', async (req, res) => {
     const product = await Product.findOne({ id: productId });
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     // Send the product as a response
     res.status(200).json(product);
   } catch (error) {
-    console.error('Error fetching product:', error);
-    res.status(500).json({ message: 'Error fetching product', error });
+    console.error("Error fetching product:", error);
+    res.status(500).json({ message: "Error fetching product", error });
   }
 });
 
@@ -65,7 +65,7 @@ app.post("/products", async (req, res) => {
     const productData = req.body;
 
     // Check if the product with the provided ID already exists
-    const existingProduct = await Product.findOne({id: req.body.id});
+    const existingProduct = await Product.findOne({ id: req.body.id });
     if (existingProduct) {
       return res
         .status(400)
@@ -84,27 +84,31 @@ app.post("/products", async (req, res) => {
   }
 });
 
-app.put('/products/:id', async (req, res) => {
+app.put("/products/:id", async (req, res) => {
   try {
     const productId = req.params.id;
     const updatedData = req.body;
 
     // Find the product with the provided productId and update it
-    const updatedProduct = await Product.findOneAndUpdate({ id: productId }, updatedData, { new: true, runValidators: true });
+    const updatedProduct = await Product.findOneAndUpdate(
+      { id: productId },
+      updatedData,
+      { new: true, runValidators: true }
+    );
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     // Send the updated product as a response
     res.status(200).json(updatedProduct);
   } catch (error) {
-    console.error('Error updating product:', error);
-    res.status(500).json({ message: 'Error updating product', error });
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Error updating product", error });
   }
 });
 
-app.delete('/products/:id', async (req, res) => {
+app.delete("/products/:id", async (req, res) => {
   try {
     const productId = req.params.id;
 
@@ -112,13 +116,13 @@ app.delete('/products/:id', async (req, res) => {
     const deletedProduct = await Product.findOneAndDelete({ id: productId });
 
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     // Send a success response with the deleted product
-    res.status(200).json({ message: 'Product deleted', deletedProduct });
+    res.status(200).json({ message: "Product deleted", deletedProduct });
   } catch (error) {
-    console.error('Error deleting product:', error);
-    res.status(500).json({ message: 'Error deleting product', error });
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Error deleting product", error });
   }
 });
