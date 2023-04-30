@@ -5,6 +5,7 @@ import axios from "axios";
 import ProductForm from "../Components/ProductForm";
 import AddProduct from "../Components/AddProduct";
 import DeleteProduct from "../Components/DeleteProduct";
+import EditProduct from "../Components/EditProduct";
 axios.defaults.withCredentials = true;
 
 const MainPage = () => {
@@ -68,7 +69,7 @@ const MainPage = () => {
                 <AddProduct products={products }setProducts={setProducts}/>
               </div>
               <div className="col ">
-                <button className="btn btn-primary">Edit</button>
+                <EditProduct />
               </div>
               <div className="col ">
                 <DeleteProduct products={products} index={index} setSuccess={setSuccess} setProducts={setProducts} setIndex={setIndex}/>
