@@ -8,6 +8,7 @@ const DeleteProduct = ({
   setIndex,
   setProducts,
   setSuccess,
+  setValues,
 }) => {
   const onDelete = async (e) => {
     setSuccess("");
@@ -23,14 +24,25 @@ const DeleteProduct = ({
               (product) => product.id !== res.data.deletedProduct.id
             )
           );
+
+          let newIndex;
           if (index == 0) {
-            const newIndex = products.length - 2;
+            newIndex = products.length - 2;
             setIndex(newIndex);
-            console.log(newIndex);
           } else {
-            const newIndex = index - 1;
+            newIndex = index - 1;
             setIndex(newIndex);
           }
+
+          setValues({
+            id: products[newIndex].id,
+            title: products[newIndex].title,
+            description: products[newIndex].description,
+            price: products[newIndex].price,
+            brand: products[newIndex].brand,
+            category: products[newIndex].category,
+            thumbnail: products[newIndex].thumbnail,
+          });
         });
     } catch (err) {
       console.error(err.message);
