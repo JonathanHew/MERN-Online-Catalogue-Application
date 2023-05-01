@@ -59,11 +59,11 @@ const AddProduct = ({products, setProducts}) => {
   return (
     <Fragment>
       <button
-        className="btn btn-primary"
+        className="btn btn-success"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        Add
+        New
       </button>
 
       <div

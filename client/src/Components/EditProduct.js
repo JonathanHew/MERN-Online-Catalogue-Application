@@ -96,7 +96,7 @@ const EditProduct = ({ index, products, setProducts, setNewValues }) => {
   return (
     <Fragment>
       <button
-        className="btn btn-primary"
+        className="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target="#editModal"
       >

@@ -52,7 +52,7 @@ const DeleteProduct = ({
   return (
     <Fragment>
       <button
-        className="btn btn-primary"
+        className="btn btn-danger"
         onClick={(e) => {
           onDelete(e);
         }}

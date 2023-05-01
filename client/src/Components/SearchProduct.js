@@ -53,47 +53,30 @@ const SearchProduct = ({ setProducts, setIndex, setValues }) => {
 
   return (
     <Fragment>
-      <div className="container mt-4">
-        <div className="d-flex justify-content-center">
-          <div className="row">
-            <div className="col">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search..."
-                value={search}
-                onChange={handleSearchChange}
-              />
-            </div>
-            <div className="col">
-              <div className="row">
-                <div className="col">
-                  <select
-                    className="form-select"
-                    value={selectedCategory}
-                    onChange={handleCategoryChange}
-                  >
-                    <option value="">All</option>
-                    {categories.map((category, index) => (
-                      <option key={index} value={category}>
-                        {category}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="col">
-                  <button
-                    className="btn btn-primary"
-                    onClick={(e) => onSearch(e)}
-                  >
-                    Search
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search..."
+        value={search}
+        onChange={handleSearchChange}
+      />
+
+      <select
+        className="form-select"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      >
+        <option value="">All</option>
+        {categories.map((category, index) => (
+          <option key={index} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
+
+      <button className="btn btn-primary" onClick={(e) => onSearch(e)}>
+        Search
+      </button>
     </Fragment>
   );
 };

@@ -2,11 +2,11 @@ import React from "react";
 import { Fragment, useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
-import ProductForm from "../Components/ProductForm";
 import AddProduct from "../Components/AddProduct";
 import DeleteProduct from "../Components/DeleteProduct";
 import EditProduct from "../Components/EditProduct";
 import SearchProduct from "../Components/SearchProduct";
+import ProductNavigation from "../Components/ProductNavigation";
 axios.defaults.withCredentials = true;
 
 const MainPage = () => {
@@ -48,47 +48,76 @@ const MainPage = () => {
       <h1>Loading...</h1>
     </Fragment>
   ) : (
-    <Fragment>
-      <div className="container">
-        <div className="card mt-5">
-          <div className="card-body">
-            <h1 className="text-center">Product Catalogue Application</h1>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4">Product App</h1>
 
-            <SearchProduct setProducts={setProducts} setIndex={setIndex} setValues={setValues}/>
-            <ProductForm
+      <div class="d-flex justify-content-center mb-4">
+        <SearchProduct
+          setProducts={setProducts}
+          setIndex={setIndex}
+          setValues={setValues}
+        />
+        <AddProduct products={products} setProducts={setProducts} />
+      </div>
+
+      {products.length === 0 ? (
+        <div className="alert alert-info mt-4 text-center" role="alert">
+          No products available.
+        </div>
+      ) : (
+        <div>
+          <div className="card mb-4">
+            <img
+              src={products[index].thumbnail}
+              alt={products[index].title}
+              className="card-img-top"
+              style={{ height: "400px", borderRadius: "4px" }}
+            />
+            <div className="card-body">
+              <h5 className="card-title">{products[index].title}</h5>
+              <p className="card-text">{products[index].description}</p>
+            </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">ID: {products[index].id}</li>
+              <li className="list-group-item">
+                Brand: {products[index].brand}
+              </li>
+              <li className="list-group-item">
+                Category: {products[index].category}
+              </li>
+              <li className="list-group-item">
+                Price: €{products[index].price}
+              </li>
+            </ul>
+            <div className="card-body d-flex justify-content-between">
+              <EditProduct
+                index={index}
+                products={products}
+                setProducts={setProducts}
+                setNewValues={setValues}
+              />
+              <DeleteProduct
+                products={products}
+                index={index}
+                setSuccess={setSuccess}
+                setProducts={setProducts}
+                setIndex={setIndex}
+                setValues={setValues}
+              />
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-center">
+            <ProductNavigation
               products={products}
               index={index}
-              values={values}
               setValues={setValues}
               setIndex={setIndex}
             />
-            <div className="row text-center mt-5 mb-3">
-              <div className="col ">
-                <AddProduct products={products} setProducts={setProducts} />
-              </div>
-              <div className="col ">
-                <EditProduct
-                  index={index}
-                  products={products}
-                  setProducts={setProducts}
-                  setNewValues={setValues}
-                />
-              </div>
-              <div className="col ">
-                <DeleteProduct
-                  products={products}
-                  index={index}
-                  setSuccess={setSuccess}
-                  setProducts={setProducts}
-                  setIndex={setIndex}
-                  setValues={setValues}
-                />
-              </div>
-            </div>
           </div>
         </div>
-      </div>
-    </Fragment>
+      )}
+    </div>
   );
 };
 
