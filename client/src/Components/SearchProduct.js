@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-const SearchProduct = ({ setProducts, setIndex, setValues }) => {
+const SearchProduct = ({ setProducts, setIndex, setValues, setResponse }) => {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -29,12 +29,19 @@ const SearchProduct = ({ setProducts, setIndex, setValues }) => {
 
   const onSearch = async (e) => {
     try {
+      //capture time before maing request
+      const startTime = new Date().getTime();
       const res = await axios.get("http://localhost:5005/products", {
         params: {
           search: search,
           category: selectedCategory,
         },
       });
+      // Calculate the response time
+      const endTime = new Date().getTime();
+      const timeDifference = endTime - startTime;
+      setResponse(`Server response time: ${timeDifference} ms`);
+
       setProducts(res.data);
       setIndex(0);
       setValues({

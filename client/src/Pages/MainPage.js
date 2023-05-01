@@ -13,7 +13,7 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState({});
   const [index, setIndex] = useState(0);
-  const [search, setSearch] = useState(0);
+  const [response, setResponse] = useState("");
   const [success, setSuccess] = useState("");
   const [values, setValues] = useState({
     id: "",
@@ -51,14 +51,16 @@ const MainPage = () => {
     <div className="container mt-4">
       <h1 className="text-center mb-4">Product App</h1>
 
-      <div class="d-flex justify-content-center mb-4">
+      <div class="d-flex justify-content-center mb-1">
         <SearchProduct
           setProducts={setProducts}
           setIndex={setIndex}
           setValues={setValues}
+          setResponse={setResponse}
         />
         <AddProduct products={products} setProducts={setProducts} />
       </div>
+      <div className="text-center mb-4" style={{color: "grey"}}>{response}</div>
 
       {products.length === 0 ? (
         <div className="alert alert-info mt-4 text-center" role="alert">
